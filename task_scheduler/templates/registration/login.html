@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="signup-form">
+    <form method="POST"  action="{% url 'login' %}">
+    {% csrf_token %}
+        <div class="d-grid gap-2">
+    {{ form.username.label_tag}}
+    {{ form.username }}
+
+
+    <p></p>
+
+
+    {{ form.password.label_tag}}
+    {{ form.password }}
+
+
+    <p></p>
+
+    <input type="submit" value="LOGIN" class="btn btn-success btn-lg btn-block" >
+        </div>
+    <input type="hidden" name="next" value="{{next}}" >
+
+    </form>
+
+</div>
+
+{% endblock %}

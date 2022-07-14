@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="signup-form">
+    <form method="POST">
+        {% csrf_token %}
+        <h2>CREATION</h2>
+        <p class="hint-text">Create your TASK and someone will start it ASAP!</p>
+        {{ task_form.as_p }}
+        <input type="submit" value="SUBMIT">
+    </form>
+</div>
+
+
+{% endblock %}

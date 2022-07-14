@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<div class="container">
+    <div class="team-single">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+                <div class="team-single-img">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-7">
+                <div class="team-single-text padding-50px-left sm-no-padding-left">
+                <div class="contact-info-section margin-40px-tb">
+                        <ul class="list-style9 no-margin">
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-orange">First Name:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>{{ userinfo_details.user.first_name }} </p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-yellow">Last Name:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>{{ userinfo_details.user.last_name }}</p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-lightred">Department:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>{{ userinfo_details.department }} </p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left text-green">Grade:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>{{ userinfo_details.grade }}</p>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

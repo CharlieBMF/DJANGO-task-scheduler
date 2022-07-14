@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if registered %}
+<h1> Thank you for registration!</h1>
+{% else %}
+{% if user_form.non_field_errors %}
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Oh snap!</strong>{{user_form.non_field_errors}}
+  </div>
+{% endif %}
+<div class="signup-form">
+<form enctype="multipart/form-data" method="post">
+    <h2>Register</h2>
+    <p class="hint-text">Create your account and start managing your tasks!</p>
+    {% csrf_token %}
+
+    {% for field in user_form %}
+    {{ field.label_tag }}
+    {{ field }}
+    <p></p>
+    {% endfor %}
+
+    {% for field in additional_user_form %}
+    {{ field.label_tag }}
+    {{ field }}
+    <p></p>
+    {% endfor %}
+    <div class="d-grid gap-2">
+    <input type="submit" name="" value="Register" class="btn btn-success btn-lg btn-block">
+    </div>
+</form>
+  </div>
+{% endif %}
+{% endblock %}
+
+

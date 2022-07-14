@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="col-md-6 pb-5 pt-2">
+    <div class="d-grid mx-auto">
+        <a href="{% url 'tasks:task_creation' %}" class="btn btn-info">CREATE TASK</a>
+    </div>
+</div>
+<h4 class="font-weight-bold mt-0 mb-4">Task List</h4>
+<table class="table table-dark table-hover" >
+    <thead>
+
+    <tr class="table-info">
+        <th>Name</th>
+        <th>
+            <div class="d-grid mx-auto">
+                <button type="button" class="btn btn-warning" disabled>NOT ASSIGNED</button>
+            </div>
+        </th>
+        <th>
+            <div class="d-grid mx-auto">
+                <button type="button" class="btn btn-primary" disabled>IN PROGRESS</button>
+            </div>
+        </th>
+        <th>
+            <div class="d-grid mx-auto">
+                <button type="button" class="btn btn-success" disabled>DONE</button>
+            </div>
+        </th>
+    </tr>
+    </thead>
+     {% for task in tasks_list %}
+    <tr>
+        {% if task.status == 'NA' %}
+        <td>{{ task.name }}
+            {% if task.importance == 'HI' %}
+            <svg width="18" height="18" color="red" ><use xlink:href="#bell"></use></svg>
+            {% endif %}
+        </td>
+        <td>
+            <div class="d-grid mx-auto">
+                <a href="{% url 'tasks:task_detail' pk=task.id %}" class="btn btn-warning">{{ task.name }}</a>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        {% elif task.status == 'INP' %}
+        <td>{{ task.name }}</td>
+        <td></td>
+        <td>
+            <div class="d-grid mx-auto">
+                <a href="{% url 'tasks:task_detail' pk=task.id %}" class="btn btn-primary">{{ task.name }}</a>
+            </div>
+        </td>
+        <td></td>
+        {% elif task.status == 'DONE' %}
+        <td>{{ task.name }}</td>
+        <td></td>
+        <td></td>
+        <td>
+            <div class="d-grid mx-auto">
+                <a href="{% url 'tasks:task_detail' pk=task.id %}" class="btn btn-success">{{ task.name }}</a>
+            </div>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

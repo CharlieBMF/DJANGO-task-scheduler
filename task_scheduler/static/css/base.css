@@ -1,0 +1,164 @@
+html, body, .osahan-account-page-left, .osahan-account-page-right{
+	width:100%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+	overflow: hidden;
+	background: #191d1e; /* Old browsers */
+	background: -moz-linear-gradient(0deg,  #191d1e 50%, #283139 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(50%,#191d1e), color-stop(100%,#283139)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* IE10+ */
+	background: linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191d1e', endColorstr='#283139',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background-attachment: fixed;
+}
+
+#projector {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width:100%;
+  height:100%;
+
+}
+
+.center-div {
+	width:580px;
+    height:374px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left: -290px;
+    margin-top:  -187px;
+}
+
+#preloaderDiv
+{
+	position:absolute;
+	left:50%;
+    top:50%;
+    margin-left: -27px;
+    margin-top:  -27px;
+}
+
+#logo{
+	opacity:0;
+    filter: alpha(opacity=0);
+}
+
+#date2014
+{
+	position:absolute;
+	padding-left: 210px;
+	padding-top:15px;
+	opacity:0;
+	top:303px;
+	left:0;
+    filter: alpha(opacity=0);
+}
+
+h1, h2, h3, h4, h5, h6, p, li, td, tr, table
+{
+    color: #999;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.form-control{
+    height: 40px;
+    box-shadow: none;
+	color: #969fa4;
+
+}
+.form-control:focus{
+	border-color: #5cb85c;
+}
+.form-control, .btn{
+    border-radius: 5px;
+}
+.signup-form{
+	width: 600px;
+	margin: 0 auto;
+	padding: 50px 0;
+}
+.signup-form h2{
+	color: #636363;
+    margin: 0 0 15px;
+	position: relative;
+	text-align: center;
+}
+.signup-form h2:before, .signup-form h2:after{
+	content: "";
+	height: 2px;
+	width: 30%;
+	background: #d4d4d4;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}
+.signup-form h2:before{
+	left: 0;
+}
+.signup-form h2:after{
+	right: 0;
+}
+.signup-form .hint-text{
+	color: #999;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.signup-form form{
+	color: #999;
+	border-radius: 3px;
+   	margin-bottom: 30px;
+	background: #191d1e; /* Old browsers */
+	background: -moz-linear-gradient(0deg,  #191d1e 50%, #283139 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(50%,#191d1e), color-stop(100%,#283139)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* IE10+ */
+	background: linear-gradient(0deg,  #191d1e 50%,#283139 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191d1e', endColorstr='#283139',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background-attachment: fixed
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.signup-form .form-group{
+	margin-bottom: 20px;
+}
+.signup-form input[type="checkbox"]{
+	margin-top: 3px;
+}
+.signup-form .btn{
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 140px;
+    outline: none !important
+
+}
+.signup-form .row div:first-child{
+	padding-right: 10px;
+}
+.signup-form .row div:last-child{
+	padding-left: 10px;
+}
+.signup-form a{
+	color: #fff;
+	text-decoration: underline;
+}
+.signup-form a:hover{
+	text-decoration: none;
+}
+.signup-form form a{
+	color: #5cb85c;
+	text-decoration: none;
+}
+.signup-form form a:hover{
+	text-decoration: underline;
+}
+
+
+
+
