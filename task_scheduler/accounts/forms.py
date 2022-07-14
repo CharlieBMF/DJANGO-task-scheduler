@@ -16,9 +16,8 @@ class UserInfoForm(forms.ModelForm):
         cleaned_data = super().clean()
         password = cleaned_data['password']
         password_confirmation = cleaned_data['password_confirmation']
-        print(cleaned_data)
         if password != password_confirmation:
-            raise ValidationError('MAKE SURE PASSWORD ARE THE SAME')
+            raise ValidationError('MAKE SURE PASSWORDS ARE THE SAME')
 
 
 class UserAdditionalInfoForm(forms.ModelForm):

@@ -7,3 +7,7 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['name', 'responsible_department', 'description', 'importance']
+
+
+class DueDateForm(forms.Form):
+    due_date = forms.DateField()

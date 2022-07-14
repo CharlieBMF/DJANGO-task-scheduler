@@ -5,6 +5,7 @@ from tasks.models import Task
 from tasks.forms import TaskForm
 from accounts.models import UserInfo
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 class TaskListView(ListView):
@@ -29,3 +30,18 @@ def task_create(request):
         task_form = TaskForm()
     return render(request, 'tasks/task_form.html', {'task_form': task_form})
 
+
+def task_get(request, pk):
+    task = Task.objects.get(id=pk)
+    task.task_executor = UserInfo.objects.filter(user=request.user.id)[0]
+    task.due_date = request.POST.get('due_date')
+    task.status = 'INP'
+    task.save()
+    return redirect('tasks:task_detail', pk=pk)
+
+
+def task_finish(request, pk):
+    task = Task.objects.get(id=pk)
+    task.status = 'DONE'
+    task.save()
+    return redirect('tasks:task_detail', pk=pk)

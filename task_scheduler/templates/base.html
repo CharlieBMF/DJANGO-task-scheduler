@@ -42,6 +42,9 @@
     <symbol id="bell" viewBox="0 0 16 16" fill="currentColor">
         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/></path>
     </symbol>
+    <symbol id="checks" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+    </symbol>
 </svg>
 
 
@@ -57,6 +60,7 @@
             {% if user.is_authenticated %}
             <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#table"></use></svg>All Tasks</a></li>
             <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#tasks"></use></svg>Your Tasks</a></li>
+            <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#checks"></use></svg>Department Tasks</a></li>
             {% else %}
             <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#table"></use></svg>Tasks</a></li>
             {% endif %}

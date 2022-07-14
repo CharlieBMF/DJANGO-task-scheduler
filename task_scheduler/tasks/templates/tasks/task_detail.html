@@ -177,11 +177,39 @@
                                 <h2 class="mb-1">{{ task_details.task_executor.user.first_name }} {{ task_details.task_executor.user.last_name }} </h2>
                                 <h6>{{ task_details.task_executor.department }} </h6>
                             </div>
+                            {% elif user.is_authenticated  %}
+                            <div class="bg-dark card addresses-item mb-4 shadow">
+                                <div class="gold-members p-4">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <div class="border-bottom">
+                                                <h5>Task is not asigned to any user</h5>
+                                            </div>
+                                            <p class="mt-2"> Due date </p>
+                                            <div class="d-grid mx-auto">
+                                                <form method="POST" action="{% url 'tasks:task_get' pk=task_details.id %}" id="due_date_form">
+                                                    {% csrf_token %}
+                                                    <input type="date" name="due_date" title="due_date" id="due_date">
+                                                    <div class="d-grid mx-auto mt-4">
+                                                        <input type="submit" class="btn btn-success" value="GET TASK">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% else %}
                             {% endif %}
                         </div>
                     </div>
                 </div>
+                    {% if task_details.task_executor.user == request.user and task_details.status == 'INP' %}
+
+                    <div class="d-grid mx-auto">
+                        <a href="{% url 'tasks:task_finish' pk=task_details.id %}" class="btn btn-success m-4">FINISH TASK</a>
+                    </div>
+                    {% endif %}
             </div>
         </div>
 
