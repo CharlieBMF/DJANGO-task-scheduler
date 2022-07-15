@@ -58,9 +58,10 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 " >
             <li><a class="nav-link"  href="#"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#home"></use></svg>Home</a></li>
             {% if user.is_authenticated %}
-            <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#table"></use></svg>All Tasks</a></li>
-            <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#tasks"></use></svg>Your Tasks</a></li>
-            <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#checks"></use></svg>Department Tasks</a></li>
+            <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#tasks"></use></svg>All Tasks</a></li>
+            <li><a class="nav-link " href="{% url 'tasks:task_list_user' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#tasks"></use></svg>Your Tasks</a></li>
+            <li><a class="nav-link " href="{% url 'tasks:task_list_department' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#tasks"></use></svg>Department Tasks</a></li>
+            <li><a class="nav-link " href="{% url 'tasks:task_asignement' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#checks"></use></svg>Tasks Asignement</a></li>
             {% else %}
             <li><a class="nav-link " href="{% url 'tasks:task_list' %}"><svg class="bi d-block mx-auto mb-1" width="24" height="24" ><use xlink:href="#table"></use></svg>Tasks</a></li>
             {% endif %}

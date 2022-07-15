@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from tasks.models import Task
-from tasks.forms import TaskForm
+from tasks.forms import TaskForm, TaskAsignementForm
 from accounts.models import UserInfo
-from django.urls import reverse
-from django.core.exceptions import ValidationError
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
 class TaskListView(ListView):
     model = Task
     context_object_name = 'tasks_list'
@@ -18,6 +17,29 @@ class TaskDetailView(DetailView):
     context_object_name = 'task_details'
 
 
+class TaskListViewByUser(ListView, LoginRequiredMixin):
+    model = Task
+    context_object_name = 'tasks_list'
+    template_name = 'tasks/task_list_user.html'
+
+
+    def get_queryset(self):
+        print(Task.objects.filter(task_executor=UserInfo.objects.filter(user=self.request.user.id)[0]))
+        return Task.objects.filter(task_executor=UserInfo.objects.filter(user=self.request.user.id)[0])
+
+
+class TaskListViewByDepartment(ListView, LoginRequiredMixin):
+    model = Task
+    context_object_name = 'tasks_list'
+    template_name = 'tasks/task_list_department.html'
+
+    def get_queryset(self):
+        return Task.objects.filter(
+            responsible_department=UserInfo.objects.filter(user=self.request.user.id)[0].department
+        )
+
+
+@login_required
 def task_create(request):
     if request.method == 'POST':
         task_form = TaskForm(data=request.POST)
@@ -31,17 +53,41 @@ def task_create(request):
     return render(request, 'tasks/task_form.html', {'task_form': task_form})
 
 
+@login_required
 def task_get(request, pk):
     task = Task.objects.get(id=pk)
-    task.task_executor = UserInfo.objects.filter(user=request.user.id)[0]
-    task.due_date = request.POST.get('due_date')
-    task.status = 'INP'
-    task.save()
+
+    if task.responsible_department == UserInfo.objects.filter(user=request.user.id)[0].department or \
+            task.responsible_department == 'NA':
+        task.task_executor = UserInfo.objects.filter(user=request.user.id)[0]
+        task.due_date = request.POST.get('due_date')
+        task.status = 'INP'
+        task.responsible_department = UserInfo.objects.filter(user=request.user.id)[0].department
+        task.save()
     return redirect('tasks:task_detail', pk=pk)
 
 
+@login_required
 def task_finish(request, pk):
     task = Task.objects.get(id=pk)
     task.status = 'DONE'
     task.save()
     return redirect('tasks:task_detail', pk=pk)
+
+
+def task_asignement(request):
+    if request.method == 'POST':
+        asignement_form = TaskAsignementForm(data=request.POST)
+        print(request.POST.get('custId'))
+#posiadamy id taska, due date i usera w pushu ze strony, teraz trzeba dane te dopisac do danego taska i zrobic go inp
+    else:
+        tasks_list = Task.objects.all()
+        task_asignement_form = TaskAsignementForm()
+        manager = False
+        if len(UserInfo.objects.filter(user=request.user.id)) > 0 and \
+                UserInfo.objects.filter(user=request.user.id)[0].grade == 'MN':
+            manager = True
+        return render(request, 'tasks/task_asignement.html', {'tasks_list': tasks_list,
+                                                              'manager': manager,
+                                                              'form': task_asignement_form,
+                                                              })
