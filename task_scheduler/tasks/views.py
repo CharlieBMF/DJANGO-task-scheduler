@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from tasks.models import Task
 from tasks.forms import TaskForm, TaskAsignementForm
-from accounts.models import UserInfo
+from accounts.models import UserInfo, User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -24,7 +24,6 @@ class TaskListViewByUser(ListView, LoginRequiredMixin):
 
 
     def get_queryset(self):
-        print(Task.objects.filter(task_executor=UserInfo.objects.filter(user=self.request.user.id)[0]))
         return Task.objects.filter(task_executor=UserInfo.objects.filter(user=self.request.user.id)[0])
 
 
@@ -75,11 +74,20 @@ def task_finish(request, pk):
     return redirect('tasks:task_detail', pk=pk)
 
 
+@login_required
 def task_asignement(request):
     if request.method == 'POST':
         asignement_form = TaskAsignementForm(data=request.POST)
-        print(request.POST.get('custId'))
-#posiadamy id taska, due date i usera w pushu ze strony, teraz trzeba dane te dopisac do danego taska i zrobic go inp
+        if asignement_form.is_valid():
+            asignemented_task = Task.objects.get(id=request.POST.get('custId'))
+            asignemented_task.task_executor = UserInfo.objects.get(
+                user=User.objects.get(username=asignement_form.cleaned_data['user_to_asign']))
+            asignemented_task.due_date = asignement_form.cleaned_data['due_date']
+            asignemented_task.status = 'INP'
+            asignemented_task.responsible_department = UserInfo.objects.get(
+                user=User.objects.get(username=asignement_form.cleaned_data['user_to_asign'])).department
+            asignemented_task.save()
+            return redirect('tasks:task_asignement')
     else:
         tasks_list = Task.objects.all()
         task_asignement_form = TaskAsignementForm()
@@ -91,3 +99,7 @@ def task_asignement(request):
                                                               'manager': manager,
                                                               'form': task_asignement_form,
                                                               })
+
+
+class Statistics(TemplateView):
+    template_name = 'tasks/statistics.html'
