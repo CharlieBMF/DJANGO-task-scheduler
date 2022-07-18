@@ -33,6 +33,7 @@ class Task(models.Model):
     description = models.TextField()
     date_of_creation = models.DateField(auto_now=False, auto_now_add=True)
     due_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    finish_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     importance = models.CharField(max_length=2, choices=TASK_IMPORTANCE, default='LO')
 
     def __str__(self):

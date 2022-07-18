@@ -3,9 +3,10 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from tasks.models import Task
 from tasks.forms import TaskForm, TaskAsignementForm
 from accounts.models import UserInfo, User
+from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-
+from datetime import datetime
 
 class TaskListView(ListView):
     model = Task
@@ -70,6 +71,7 @@ def task_get(request, pk):
 def task_finish(request, pk):
     task = Task.objects.get(id=pk)
     task.status = 'DONE'
+    task.finish_date = datetime.today().strftime('%Y-%m-%d')
     task.save()
     return redirect('tasks:task_detail', pk=pk)
 
@@ -101,5 +103,49 @@ def task_asignement(request):
                                                               })
 
 
-class Statistics(TemplateView):
-    template_name = 'tasks/statistics.html'
+def statistics(request):
+    all_tasks_counter = Task.objects.count()
+    not_asigned_task_counter = Task.objects.filter(status='NA').count()
+    in_progress_task_counter = Task.objects.filter(status='INP').count()
+    done_task_counter = Task.objects.filter(status='DONE').count()
+    all_users_counter = UserInfo.objects.count()
+    avg_tasks_per_user = round(all_tasks_counter/all_users_counter, 2)
+
+    amount_of_tasks = []
+    result_of_groupby_task_executor = (Task.objects
+              .values('task_executor')
+              .annotate(dtask=Count('task_executor'))
+              .order_by('-dtask')
+              )
+    if len(result_of_groupby_task_executor) >= 5:
+        sort_range = 5
+    else:
+        sort_range = len(result_of_groupby_task_executor)
+    for i in range(sort_range):
+        dict = result_of_groupby_task_executor[i]
+        dict['task_executor'] = str(UserInfo.objects.get(user=dict['task_executor']))
+        amount_of_tasks.append(dict)
+    amount_of_tasks_top5 = amount_of_tasks[0:5]
+    amount_of_tasks_last5 = amount_of_tasks[:-6:-1]
+
+    tasks_length = []
+    tasks_total_length = 0
+    for single_task in Task.objects.filter(status='DONE'):
+        length = single_task.finish_date - single_task.date_of_creation
+        dict = {single_task.name: int(str(length).split()[0])}
+        tasks_length.append(dict)
+        tasks_total_length += int(str(length).split()[0])
+    avg_tasks_length = f'{round(tasks_total_length / done_task_counter, 0)} days'
+
+
+    return render(request, 'tasks/statistics.html', {'all_tasks_counter': all_tasks_counter,
+                                                     'not_asigned_task_counter': not_asigned_task_counter,
+                                                     'in_progress_task_counter': in_progress_task_counter,
+                                                     'done_task_counter': done_task_counter,
+                                                     'all_users_counter': all_users_counter,
+                                                     'avg_tasks_per_user': avg_tasks_per_user,
+                                                     'amount_of_tasks_top5': amount_of_tasks_top5,
+                                                     'amount_of_tasks_last5': amount_of_tasks_last5,
+                                                     'avg_tasks_length': avg_tasks_length
+                                                   })
+
