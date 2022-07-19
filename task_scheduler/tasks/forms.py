@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import HiddenInput
 from tasks.models import Task
 from accounts.models import UserInfo
 
@@ -11,9 +10,6 @@ class TaskForm(forms.ModelForm):
 
 
 DEPARTMENT_USERS = [(y.user, y.user) for y in UserInfo.objects.all()]
-print(DEPARTMENT_USERS)
-
-UserInfo.objects.filter()
 
 
 class DateInput(forms.DateInput):

@@ -1,6 +1,7 @@
 from django.urls import path
 from accounts.views import register, UserListView, UserDetailView
 
+
 app_name = 'accounts'
 
 urlpatterns = [

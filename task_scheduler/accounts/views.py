@@ -3,8 +3,6 @@ from accounts.forms import UserInfoForm, UserAdditionalInfoForm
 from accounts.models import UserInfo
 from django.views.generic import ListView, DetailView
 
-# Create your views here.
-
 
 def register(request):
 

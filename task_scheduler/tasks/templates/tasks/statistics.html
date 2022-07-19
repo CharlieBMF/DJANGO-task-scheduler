@@ -1,176 +1,138 @@
 {% extends "base.html" %}
 {% block content %}
 
-        <div class="col-md-12">
-            <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade  active show" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
-                        <h4 class="font-weight-bold mt-0 mb-4">Tasks STATISTICS</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-dark card addresses-item mb-4 shadow">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>ALL TASKS</h5>
-                                                </div>
-                                                <h1 class="mt-2"> {{all_tasks_counter}}</h1>
-                                        	</div>
+<div class="col-md-12">
+    <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade  active show" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
+                <h4 class="font-weight-bold mt-0 mb-4">Tasks STATISTICS</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-dark card addresses-item mb-4 shadow">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>ALL TASKS</h5>
                                         </div>
+                                        <h1 class="mt-2"> {{all_tasks_counter}}</h1>
                                     </div>
                                 </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-4">
-                                <div class="bg-dark card addresses-item mb-4 shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Tasks NOT ASIGNED</h5>
-                                                </div>
-                                                <h1 class="mt-2"> {{not_asigned_task_counter}} </h1>
-                                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="bg-dark card addresses-item mb-4 shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>Tasks NOT ASIGNED</h5>
                                         </div>
+                                        <h1 class="mt-2"> {{not_asigned_task_counter}} </h1>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="col-md-4">
-                                <div class="bg-dark card addresses-item mb-4 shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Tasks IN PROGRESS</h5>
-                                                </div>
-                                                <h1 class="mt-2"> {{in_progress_task_counter}}</h1>
-                                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-dark card addresses-item mb-4 shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>Tasks IN PROGRESS</h5>
                                         </div>
+                                        <h1 class="mt-2"> {{in_progress_task_counter}}</h1>
                                     </div>
                                 </div>
                             </div>
-                                                        <div class="col-md-4">
-                                <div class="bg-dark card addresses-item mb-4 shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Tasks DONE</h5>
-                                                </div>
-                                                <h1 class="mt-2"> {{done_task_counter}}</h1>
-                                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-dark card addresses-item mb-4 shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>Tasks DONE</h5>
                                         </div>
+                                        <h1 class="mt-2"> {{done_task_counter}}</h1>
                                     </div>
                                 </div>
                             </div>
-</div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-dark card addresses-item mb-4  shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>AVG Task per user</h5>
-                                                </div>
-                                                <h1 class="mt-2">{{avg_tasks_per_user}} </h1>
-                                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-dark card addresses-item mb-4  shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>AVG Task per user</h5>
                                         </div>
+                                        <h1 class="mt-2">{{avg_tasks_per_user}} </h1>
                                     </div>
                                 </div>
                             </div>
-						</div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="bg-dark card addresses-item mb-4  shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
-                                             <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Amount of tasks per user TOP 5</h5>
-                                                </div>
-                                                 <div class="d-grid mx-auto">
-                                                 {% for dict in amount_of_tasks_top5 %}
-                                                <h2 class="mt-2">{{dict.task_executor}} : {{dict.dtask}} </h2>
-                                                 {% endfor %}
-                                                 </div>
-                                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="bg-dark card addresses-item mb-4  shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>Amount of tasks per user TOP 5</h5>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="bg-dark card addresses-item shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
-                                             <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Amount of tasks per user LAST 5</h5>
-                                                </div>
-                                                 <div class="d-grid mx-auto">
-                                                 {% for dict in amount_of_tasks_last5 %}
-                                                <h2 class="mt-2">{{dict.task_executor}} : {{dict.dtask}} </h2>
-                                                 {% endfor %}
-                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-dark card addresses-item mb-4 shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>AVG Task Length</h5>
-                                                </div>
-                                              <h1 class="mt-2">{{avg_tasks_length}}</h1>
-                                            </div>
+                                        <div class="d-grid mx-auto">
+                                            {% for dict in amount_of_tasks_top5 %}
+                                            <h2 class="mt-2">{{dict.task_executor}} : {{dict.dtask}} </h2>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                       <div class="row">
-                            <div class="col-md-6">
-                                <div class="bg-dark card addresses-item shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Fastest Task TOP5</h5>
-                                                </div>
-                                              <p class="mt-2"> </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bg-dark card addresses-item shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>Amount of tasks per user LAST 5</h5>
+                                        </div>
+                                        <div class="d-grid mx-auto">
+                                            {% for dict in amount_of_tasks_last5 %}
+                                            <h2 class="mt-2">{{dict.task_executor}} : {{dict.dtask}} </h2>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-md-6">
-                                <div class="bg-dark card addresses-item shadow-sm">
-                                    <div class="gold-members p-4">
-                                        <div class="media">
-                                            <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
-                                            <div class="media-body">
-                                                <div class="border-bottom">
-                                                    <h5>Longest Task TOP 5</h5>
-                                                </div>
-                                              <p class="mt-2"> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-dark card addresses-item mb-4 shadow-sm">
+                            <div class="gold-members p-4">
+                                <div class="media">
+                                    <div class="mr-3"><i class="icofont-location-pin icofont-3x"></i></div>
+                                    <div class="media-body">
+                                        <div class="border-bottom">
+                                            <h5>AVG Task Length</h5>
                                         </div>
+                                        <h1 class="mt-2">{{avg_tasks_length}}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -181,6 +143,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}

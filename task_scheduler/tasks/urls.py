@@ -4,6 +4,7 @@ from tasks.views import TaskListView, TaskDetailView, task_create, \
                         TaskListViewByDepartment, task_asignement, \
                         statistics
 
+
 app_name = 'tasks'
 
 urlpatterns = [

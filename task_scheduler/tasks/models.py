@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from accounts.models import UserInfo
 
-# Create your models here.
+
 DEPARTMENTS = [
     ('PR', 'PRODUCTION'),
     ('QA', 'QUALITY'),
@@ -12,11 +12,13 @@ DEPARTMENTS = [
     ('LP', 'LOGISTIC'),
     ('NA', 'UNDEFINED'),
 ]
+
 TASK_IMPORTANCE = [
     ('HI', 'CRITICAL'),
     ('NO', 'NORMAL'),
     ('LO', 'LOW'),
 ]
+
 STATUS = [
     ('NA', 'NOT ASSIGNED'),
     ('INP', 'IN PROGRESS'),

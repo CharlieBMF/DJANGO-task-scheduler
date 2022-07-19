@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
+
 class TaskListView(ListView):
     model = Task
     context_object_name = 'tasks_list'
@@ -22,7 +23,6 @@ class TaskListViewByUser(ListView, LoginRequiredMixin):
     model = Task
     context_object_name = 'tasks_list'
     template_name = 'tasks/task_list_user.html'
-
 
     def get_queryset(self):
         return Task.objects.filter(task_executor=UserInfo.objects.filter(user=self.request.user.id)[0])
@@ -109,18 +109,17 @@ def statistics(request):
     in_progress_task_counter = Task.objects.filter(status='INP').count()
     done_task_counter = Task.objects.filter(status='DONE').count()
     all_users_counter = UserInfo.objects.count()
-    avg_tasks_per_user = round(all_tasks_counter/all_users_counter, 2)
+    avg_tasks_per_user = round((in_progress_task_counter+done_task_counter)/all_users_counter, 2)
 
     amount_of_tasks = []
-    result_of_groupby_task_executor = (Task.objects
-              .values('task_executor')
-              .annotate(dtask=Count('task_executor'))
-              .order_by('-dtask')
-              )
-    if len(result_of_groupby_task_executor) >= 5:
+    result_of_groupby_task_executor = (Task.objects.values(
+        'task_executor').annotate(dtask=Count('task_executor'))
+              .order_by('-dtask'))
+    if len(result_of_groupby_task_executor) > 5:
         sort_range = 5
     else:
-        sort_range = len(result_of_groupby_task_executor)
+        sort_range = len(result_of_groupby_task_executor)-1
+    print(sort_range)
     for i in range(sort_range):
         dict = result_of_groupby_task_executor[i]
         dict['task_executor'] = str(UserInfo.objects.get(user=dict['task_executor']))
@@ -135,9 +134,10 @@ def statistics(request):
         dict = {single_task.name: int(str(length).split()[0])}
         tasks_length.append(dict)
         tasks_total_length += int(str(length).split()[0])
-    avg_tasks_length = f'{round(tasks_total_length / done_task_counter, 0)} days'
-
-
+    if done_task_counter != 0:
+        avg_tasks_length = f'{round(tasks_total_length / done_task_counter, 0)} days'
+    else:
+        avg_tasks_length = f'None of task is finished'
     return render(request, 'tasks/statistics.html', {'all_tasks_counter': all_tasks_counter,
                                                      'not_asigned_task_counter': not_asigned_task_counter,
                                                      'in_progress_task_counter': in_progress_task_counter,
@@ -147,5 +147,8 @@ def statistics(request):
                                                      'amount_of_tasks_top5': amount_of_tasks_top5,
                                                      'amount_of_tasks_last5': amount_of_tasks_last5,
                                                      'avg_tasks_length': avg_tasks_length
-                                                   })
+                                                     })
+
+
+
 
