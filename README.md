@@ -40,4 +40,5 @@ There are implemented three main views of tasks. They were divided into:
 Tasks in each view are seperated by status as 'Not Asigned', 'In Progress', 'Done'. Clicking on each tasks trasnfers into detail page of a task.
 
 <h3>Detail Task View</h3>
- file:///home/karol/Pictures/Screenshots/Screenshot%20from%202022-07-19%2022-09-14.png
+<img src="(https://user-images.githubusercontent.com/109242797/179839621-266fe64b-53a0-41d2-a94e-c2d2fa7ec7f0.png)" alt='not found' title='Detail View'>
+
