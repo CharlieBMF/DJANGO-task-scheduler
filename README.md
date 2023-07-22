@@ -1,5 +1,5 @@
 # django-task-scheduler
-<h2>This is a Python Django project to connect workers with each task</h2>
+<h2>Python Django project to connect workers with each task</h2>
 
 # Main Functions
 <h3> Navbar </h3>
